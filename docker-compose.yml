@@ -2,13 +2,13 @@ version: "3.7"
 
 services:
   app-client:
-    build: ./client
+    build: ./client/app
     container_name: app-client
     restart: always
     ports:
       - "3000:3000"
   app-server:
-    build: ./server
+    build: ./server/app
     container_name: app-server
     restart: always
     ports:
