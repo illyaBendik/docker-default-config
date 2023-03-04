@@ -7,9 +7,11 @@ COPY . .
 
 RUN yarn install \
   --prefer-offline \
-  --frozen-lockfile \
+  # --frozen-lockfile \
   --non-interactive \
   --production=false
+
+RUN rm -rf yarn.lock
 
 RUN yarn build
 
