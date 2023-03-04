@@ -3,7 +3,7 @@ FROM node:16.16.0 as builder
 RUN mkdir -p /var/www/client
 WORKDIR /var/www/client
 
-COPY . .
+COPY ./app/ .
 
 RUN yarn install \
   --prefer-offline \
