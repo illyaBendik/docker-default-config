@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  app-client:
+    build: ./client
+    container_name: app-client
+    restart: always
+    ports:
+      - "3000:3000"
+  app-server:
+    build: ./server
+    container_name: app-server
+    restart: always
+    ports:
+      - "3002:3002"
+  nginx:
+    build: ./nginx
+    restart: always
+    # volumes:
+    # - ./production/nginx:/etc/nginx/conf.d
+    # - ./production/certbot/conf:/etc/letsencrypt
+    # - ./production/certbot/www:/var/www/certbot
+    # - ./production/public:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app-client
+      - app-server
+    # command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+  # certbot:
+  #   image: certbot/certbot
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./production/certbot/conf:/etc/letsencrypt
+  #     - ./production/certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
