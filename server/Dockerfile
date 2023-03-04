@@ -1,4 +1,4 @@
-FROM node:16.16.0
+FROM node:16.16.0 as builder
 
 RUN mkdir -p /var/www/server
 WORKDIR /var/www/server
