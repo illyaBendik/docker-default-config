@@ -8,9 +8,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - front-tier
-      - back-tier
-      - nginx-tier
+      - main-network
   app-server:
     build: path
     container_name: app-server
@@ -18,16 +16,12 @@ services:
     ports:
       - "3002:3002"
     networks:
-      - front-tier
-      - back-tier
-      - nginx-tier
+      - main-network
   nginx:
     build: ./nginx
     restart: always
     networks:
-      - front-tier
-      - back-tier
-      - nginx-tier
+      - main-network
     ports:
       - "80:80"
       - "443:443"
@@ -36,6 +30,4 @@ services:
       - app-server
 
 networks:
-  front-tier:
-  back-tier:
-  nginx-tier:
+  main-network:
