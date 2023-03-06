@@ -2,32 +2,24 @@ version: "3.7"
 
 services:
   app-client:
-    build: path
+    build: ./client
     container_name: app-client
     restart: always
     ports:
       - "3000:3000"
-    networks:
-      - main-network
   app-server:
-    build: path
+    build: ./server
     container_name: app-server
     restart: always
     ports:
       - "3002:3002"
-    networks:
-      - main-network
-  nginx:
+  app-nginx:
     build: ./nginx
+    container_name: app-nginx
     restart: always
-    networks:
-      - main-network
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - app-client
       - app-server
-
-networks:
-  main-network:
