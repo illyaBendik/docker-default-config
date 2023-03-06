@@ -35,10 +35,9 @@ ADD ./app/nuxt.config.js ./
 
 COPY --from=BUILDER ./app/node_modules ./node_modules/
 COPY --from=BUILDER ./app/.nuxt ./.nuxt/
-COPY --from=BUILDER ./app/src/static ./src/static/
+COPY --from=BUILDER ./app/static ./static/
 
 ENV NODE_ENV production
-
 ENV HOST 0.0.0.0
 
 EXPOSE 8080
