@@ -33,9 +33,9 @@ ADD ./app/package.json ./
 
 ADD ./app/nuxt.config.js ./
 
-COPY --from=BUILDER ./app/node_modules ./node_modules/
-COPY --from=BUILDER ./app/.nuxt ./.nuxt/
-COPY --from=BUILDER ./app/static ./static/
+COPY --from=BUILDER ./node_modules ./node_modules/
+COPY --from=BUILDER ./.nuxt ./.nuxt/
+COPY --from=BUILDER ./static ./static/
 
 ENV NODE_ENV production
 ENV HOST 0.0.0.0
