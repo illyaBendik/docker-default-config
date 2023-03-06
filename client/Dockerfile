@@ -1,4 +1,4 @@
-FROM node:16.16.0-alpine as dependencies
+FROM node:16.16.0 as dependencies
 
 RUN mkdir -p /var/www/client/node_modules
 
@@ -8,15 +8,13 @@ WORKDIR /var/www/client
 
 ADD ./app/package.json ./
 
-RUN apk add --no-cache autoconf aclocal
-
 RUN yarn install \
   # --frozen-lockfile \
   --non-interactive \
   --production=false
 
 
-FROM node:16.16.0-alpine as builder
+FROM node:16.16.0 as builder
 
 WORKDIR /var/www/client
 
@@ -29,7 +27,7 @@ RUN yarn build
 RUN yarn autoclean
 
 
-FROM node:16.16.0-alpine as runner
+FROM node:16.16.0 as runner
 
 WORKDIR /var/www/client
 
