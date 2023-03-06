@@ -14,7 +14,7 @@ RUN yarn install \
   --production=false
 
 
-FROM node:16.16.0 as builder
+FROM node:16.16.0 as BUILDER
 
 WORKDIR /var/www/client
 
@@ -25,7 +25,7 @@ COPY --from=dependencies /var/www/client/node_modules ./node_modules
 RUN yarn build
 
 
-FROM node:16.16.0 as runner
+FROM node:16.16.0 as RUNNER
 
 WORKDIR /var/www/client
 
@@ -33,9 +33,9 @@ ADD ./app/package.json ./
 
 ADD ./app/nuxt.config.js ./
 
-COPY --from=builder ./app/node_modules ./node_modules/
-COPY --from=builder ./app/.nuxt ./.nuxt/
-COPY --from=builder ./app/src/static ./src/static/
+COPY --from=BUILDER ./app/node_modules ./node_modules/
+COPY --from=BUILDER ./app/.nuxt ./.nuxt/
+COPY --from=BUILDER ./app/src/static ./src/static/
 
 ENV NODE_ENV production
 
