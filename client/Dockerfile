@@ -1,13 +1,15 @@
 FROM node:16.16.0-alpine as dependencies
 
-RUN mkdir -p /var/www/client/node_modules && chown -R node:node /var/www/client
+RUN mkdir -p /var/www/client/node_modules
+
+RUN chown -R node:node /var/www/client
 
 WORKDIR /var/www/client
 
 ADD ./app/package.json ./
 
 RUN yarn install \
-  --frozen-lockfile \
+  # --frozen-lockfile \
   --non-interactive \
   --production=false
 
@@ -45,6 +47,6 @@ EXPOSE 8080
 
 COPY --chown=node:node ./app .
 
-USER node
+
 
 CMD [ "yarn", "start" ]
