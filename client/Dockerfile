@@ -1,4 +1,4 @@
-FROM node:16.16.0 as dependencies
+FROM node:16.16.0 as DEPENDENCIES
 
 RUN mkdir -p /var/www/client/node_modules
 
@@ -24,8 +24,6 @@ COPY --from=dependencies /var/www/client/node_modules ./node_modules
 
 RUN yarn build
 
-RUN yarn autoclean
-
 
 FROM node:16.16.0 as runner
 
@@ -46,7 +44,5 @@ ENV HOST 0.0.0.0
 EXPOSE 8080
 
 COPY --chown=node:node ./app .
-
-
 
 CMD [ "yarn", "start" ]
