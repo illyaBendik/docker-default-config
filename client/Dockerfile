@@ -8,7 +8,9 @@ WORKDIR /var/www/client
 
 ADD ./app/package.json ./
 
-RUN apk add --no-cache autoconf aclocal
+RUN apk add --no-cache autoconf
+
+RUN apk add --no-cache aclocal
 
 RUN yarn install \
   # --frozen-lockfile \
