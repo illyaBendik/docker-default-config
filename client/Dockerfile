@@ -38,7 +38,8 @@ COPY --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
 COPY --from=BUILDER ./var/www/client/static ./static/
 
 ENV NODE_ENV production
-ENV HOST 0.0.0.0
+ENV NUXT_HOST 0.0.0.0
+ENV NUXT_PORT 3000
 
 EXPOSE 3000
 
