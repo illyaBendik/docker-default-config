@@ -35,7 +35,6 @@ RUN  mkdir -p ./store && touch ./store/index.js
 
 USER node
 
-
 ADD --chown=node:node ./app/package.json ./
 ADD --chown=node:node ./app/build.config.js ./
 ADD --chown=node:node ./app/nuxt.config.js ./
