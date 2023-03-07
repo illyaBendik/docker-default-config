@@ -31,13 +31,16 @@ FROM node:16.16.0 as RUNNER
 
 WORKDIR /var/www/client
 
-ADD ./app/package.json ./
-ADD ./app/nuxt.config.js ./
-ADD ./app/store ./
+USER node
 
-COPY --from=BUILDER ./var/www/client/node_modules ./node_modules/
-COPY --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
-COPY --from=BUILDER ./var/www/client/static ./static/
+ADD --chown=node:node ./app/package.json ./
+ADD --chown=node:node ./app/build.config.js ./
+ADD --chown=node:node ./app/nuxt.config.js ./
+ADD --chown=node:node ./app/store ./
+
+COPY --chown=node:node --from=BUILDER ./var/www/client/node_modules ./node_modules/
+COPY --chown=node:node --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
+COPY --chown=node:node --from=BUILDER ./var/www/client/static ./static/
 
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
@@ -47,7 +50,5 @@ ENV API_URL http://bestbetontario.com/api/v1
 ENV TINYMCE_API_KEY 5ogmlslbg8c7sza82f4fhjep32jxlqcmxoue1y1cwg8fwosj
 
 EXPOSE 3000
-
-USER node
 
 CMD [ "yarn", "start" ]
