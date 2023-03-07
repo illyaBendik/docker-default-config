@@ -48,6 +48,6 @@ ENV TINYMCE_API_KEY 5ogmlslbg8c7sza82f4fhjep32jxlqcmxoue1y1cwg8fwosj
 
 EXPOSE 3000
 
-COPY --chown=node:node ./app .
+USER node
 
 CMD [ "yarn", "start" ]
