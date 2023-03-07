@@ -40,7 +40,7 @@ COPY --from=BUILDER ./var/www/client/static ./static/
 ENV NODE_ENV production
 ENV HOST 0.0.0.0
 
-EXPOSE 8080
+EXPOSE 3000
 
 COPY --chown=node:node ./app .
 
