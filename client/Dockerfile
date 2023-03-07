@@ -33,11 +33,12 @@ WORKDIR /var/www/client
 
 USER node
 
-RUN --chown=node:node mkdir -p ./store && touch ./store/index.js
+RUN  mkdir -p ./store && touch ./store/index.js
 
 ADD --chown=node:node ./app/package.json ./
 ADD --chown=node:node ./app/build.config.js ./
 ADD --chown=node:node ./app/nuxt.config.js ./
+ADD --chown=node:node ./app/store ./
 
 COPY --chown=node:node --from=BUILDER ./var/www/client/node_modules ./node_modules/
 COPY --chown=node:node --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
