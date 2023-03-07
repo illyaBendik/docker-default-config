@@ -31,18 +31,19 @@ FROM node:16.16.0 as RUNNER
 
 WORKDIR /var/www/client
 
-RUN  mkdir -p ./store && touch ./store/index.js
+# RUN  mkdir -p ./store && touch ./store/index.js
 
 USER node
 
-ADD --chown=node:node ./app/package.json ./
-ADD --chown=node:node ./app/build.config.js ./
-ADD --chown=node:node ./app/nuxt.config.js ./
-ADD --chown=node:node ./app/store ./
+COPY --chown=node:node --from=BUILDER ./var/www/client/ ./
+# ADD --chown=node:node ./app/package.json ./
+# ADD --chown=node:node ./app/build.config.js ./
+# ADD --chown=node:node ./app/nuxt.config.js ./
+# ADD --chown=node:node ./app/store ./
 
-COPY --chown=node:node --from=BUILDER ./var/www/client/node_modules ./node_modules/
-COPY --chown=node:node --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
-COPY --chown=node:node --from=BUILDER ./var/www/client/static ./static/
+# COPY --chown=node:node --from=BUILDER ./var/www/client/node_modules ./node_modules/
+# COPY --chown=node:node --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
+# COPY --chown=node:node --from=BUILDER ./var/www/client/static ./static/
 
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
