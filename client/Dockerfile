@@ -18,6 +18,8 @@ FROM node:16.16.0 as BUILDER
 
 WORKDIR /var/www/client
 
+ENV NODE_ENV development
+
 ADD ./app ./
 
 COPY --from=dependencies /var/www/client/node_modules ./node_modules
@@ -31,7 +33,6 @@ WORKDIR /var/www/client
 
 ADD ./app/package.json ./
 ADD ./app/nuxt.config.js ./
-ADD ./app/build.config.js ./
 ADD ./app/store ./
 
 COPY --from=BUILDER ./var/www/client/node_modules ./node_modules/
