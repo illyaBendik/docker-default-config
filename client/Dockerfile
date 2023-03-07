@@ -65,7 +65,7 @@ WORKDIR /var/www/client
 COPY package*.json ./
 RUN yarn install
 
-COPY . .
+COPY ./app ./
 
 RUN yarn build
 
