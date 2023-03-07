@@ -31,9 +31,10 @@ FROM node:16.16.0 as RUNNER
 
 WORKDIR /var/www/client
 
+RUN  mkdir -p ./store && touch ./store/index.js
+
 USER node
 
-RUN  mkdir -p ./store && touch ./store/index.js
 
 ADD --chown=node:node ./app/package.json ./
 ADD --chown=node:node ./app/build.config.js ./
