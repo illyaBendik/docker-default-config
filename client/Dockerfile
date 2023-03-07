@@ -30,8 +30,9 @@ FROM node:16.16.0 as RUNNER
 WORKDIR /var/www/client
 
 ADD ./app/package.json ./
-
 ADD ./app/nuxt.config.js ./
+ADD ./app/build.config.js ./
+ADD ./app/store ./
 
 COPY --from=BUILDER ./var/www/client/node_modules ./node_modules/
 COPY --from=BUILDER ./var/www/client/.nuxt ./.nuxt/
@@ -40,6 +41,9 @@ COPY --from=BUILDER ./var/www/client/static ./static/
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
 ENV NUXT_PORT 3000
+ENV BASE_URL /
+ENV API_URL http://bestbetontario.com/api/v1
+ENV TINYMCE_API_KEY 5ogmlslbg8c7sza82f4fhjep32jxlqcmxoue1y1cwg8fwosj
 
 EXPOSE 3000
 
