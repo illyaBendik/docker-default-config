@@ -62,10 +62,11 @@ FROM node:16.16.0
 RUN mkdir -p /var/www/client
 WORKDIR /var/www/client
 
-COPY ./app/package*.json ./
+COPY ./app/package.json ./
+
 RUN yarn install
 
-COPY ./app ./
+COPY ./app/ ./
 
 RUN yarn build
 
