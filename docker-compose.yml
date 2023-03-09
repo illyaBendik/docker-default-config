@@ -18,34 +18,19 @@ services:
     container_name: app-nginx
     restart: always
     volumes:
-      - certs:/etc/nginx/certs
-      - /tmp/letsencrypt/www:/tmp/letsencrypt/www
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www:/var/www:ro
+      - /etc/deployment/nginx:/etc/nginx/conf.d:ro
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - app-client
       - app-server
-  letsencrypt:
-    container_name: letsencrypt
-    image: gordonchan/auto-letsencrypt
-    links:
-      - app-nginx
+  certbot:
+    image: certbot/certbot:nightly
+    restart: always
     volumes:
-      - /var/log/letsencrypt/:/var/log/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock
       - /etc/letsencrypt:/etc/letsencrypt
-      - /var/lib/letsencrypt:/var/lib/letsencrypt
-      - /tmp/letsencrypt/www:/tmp/letsencrypt/www
-      - certs:/etc/nginx/certs
-    environment:
-      - EMAIL=bendik.illya@gmail.com
-      - SERVER_CONTAINER=app-nginx
-      - WEBROOT_PATH=/tmp/letsencrypt/www
-      - CERTS_PATH=/etc/nginx/certs
-      - DOMAINS=bestbetontario.com www.bestbetontario.com
-      - CHECK_FREQ=7
-    restart: unless-stopped
-
-volumes:
-  certs:
+      - /var/www/certbot:/var/www
+    entrypoint: "/bin/sh -c 'while :; do certbot renew; sleep 12h; done'"
