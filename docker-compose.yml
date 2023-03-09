@@ -6,7 +6,7 @@ services:
     container_name: client
     restart: always
     ports:
-      - "3000:3000"
+      - "3004:3004"
   app-server:
     build: ./server
     container_name: server
