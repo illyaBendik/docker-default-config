@@ -23,3 +23,26 @@ services:
     depends_on:
       - app-client
       - app-server
+  letsencrypt:
+    container_name: letsencrypt
+    image: gordonchan/auto-letsencrypt
+    links:
+      - app-nginx
+    volumes:
+      - /var/log/letsencrypt/:/var/log/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - /tmp/letsencrypt/www:/tmp/letsencrypt/www
+      - certs:/etc/nginx/certs
+    environment:
+      - EMAIL=bendik.illya@gmail.com
+      - SERVER_CONTAINER=app-nginx
+      - WEBROOT_PATH=/tmp/letsencrypt/www
+      - CERTS_PATH=/etc/nginx/certs
+      - DOMAINS=bestbetontario.com www.bestbetontario.com
+      - CHECK_FREQ=7
+    restart: unless-stopped
+
+volumes:
+  certs:
