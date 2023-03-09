@@ -12,7 +12,7 @@ services:
     container_name: server
     restart: always
     ports:
-      - "3002:3002"
+      - "3005:3005"
   app-nginx:
     build: ./nginx
     container_name: nginx
