@@ -17,6 +17,9 @@ services:
     build: ./nginx
     container_name: app-nginx
     restart: always
+    volumes:
+      - certs:/etc/nginx/certs
+      - /tmp/letsencrypt/www:/tmp/letsencrypt/www
     ports:
       - "80:80"
       - "443:443"
