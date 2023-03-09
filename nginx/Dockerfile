@@ -9,3 +9,5 @@ WORKDIR /var/www
 RUN mkdir -p /var/www/cache
 
 RUN chown -R nginx:nginx /var/www/cache
+
+USER nginx
