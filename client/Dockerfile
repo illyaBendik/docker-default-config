@@ -40,6 +40,7 @@ USER node
 
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
+ENV NUXT_PORT 3000
 
 ADD --chown=node:node ./app/package.json ./
 ADD --chown=node:node ./app/build.config.js ./
