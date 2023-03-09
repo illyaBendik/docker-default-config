@@ -3,19 +3,19 @@ version: "3.7"
 services:
   app-client:
     build: ./client
-    container_name: app-client
+    container_name: client
     restart: always
     ports:
       - "3000:3000"
   app-server:
     build: ./server
-    container_name: app-server
+    container_name: server
     restart: always
     ports:
       - "3002:3002"
   app-nginx:
     build: ./nginx
-    container_name: app-nginx
+    container_name: nginx
     restart: always
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
@@ -27,8 +27,9 @@ services:
     depends_on:
       - app-client
       - app-server
-  certbot:
+  app-certbot:
     image: certbot/certbot:nightly
+    container_name: certbot
     restart: always
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
