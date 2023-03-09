@@ -40,6 +40,13 @@ RUN  mkdir -p ./store && touch ./store/index.js
 
 USER node
 
+ENV NODE_ENV production
+ENV NUXT_HOST 0.0.0.0
+ENV NUXT_PORT 3000
+ENV BASE_URL /
+ENV API_URL http://bestbetontario.com/api/v1
+ENV TINYMCE_API_KEY 5ogmlslbg8c7sza82f4fhjep32jxlqcmxoue1y1cwg8fwosj
+
 ADD --chown=node:node ./app/package.json ./
 ADD --chown=node:node ./app/build.config.js ./
 ADD --chown=node:node ./app/nuxt.config.js ./
