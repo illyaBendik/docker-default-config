@@ -8,4 +8,4 @@ WORKDIR /var/www
 
 RUN mkdir -p ./cache
 
-RUN chmod -R 766 /var/www/cache
+RUN chmod -R 777 /var/www/cache
