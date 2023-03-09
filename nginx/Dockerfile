@@ -4,10 +4,8 @@ COPY default.conf /etc/nginx/conf.d
 
 COPY nginx.conf /etc/nginx/
 
-WORKDIR /var/www
+WORKDIR /var/www/
 
-RUN mkdir -p /var/www/cache
+RUN mkdir -p ./cache
 
-RUN chmod -R 777 /var/www/cache
-
-RUN chown -R nginx:nginx /var/www/cache
+RUN chmod -R 707 /var/www/cache
