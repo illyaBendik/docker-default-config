@@ -6,6 +6,6 @@ COPY nginx.conf /etc/nginx/
 
 WORKDIR /var/www
 
-RUN mkdir -p /var/www/cache
+RUN mkdir -p ./cache
 
-USER nginx
+RUN chmod -R 766 /var/www/cache
