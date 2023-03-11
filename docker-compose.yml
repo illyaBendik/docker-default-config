@@ -3,19 +3,19 @@ version: "3.7"
 services:
   app-client:
     build: ./client
-    container_name: client
+    container_name: app-client
     restart: always
     ports:
-      - "3000:3000"
+      - "4000:4000"
   app-server:
     build: ./server
-    container_name: server
+    container_name: app-server
     restart: always
     ports:
-      - "3002:3002"
+      - "4002:4002"
   app-nginx:
     build: ./nginx
-    container_name: nginx
+    container_name: app-nginx
     restart: always
     # volumes:
     #   - /etc/letsencrypt:/etc/letsencrypt:ro
