@@ -14,7 +14,7 @@ RUN yarn install \
   --non-interactive \
   --production=true
 
-EXPOSE 3005
+EXPOSE 3002
 
 COPY --chown=node:node ./app .
 

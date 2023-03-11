@@ -6,32 +6,32 @@ services:
     container_name: client
     restart: always
     ports:
-      - "3004:3004"
+      - "3000:3000"
   app-server:
     build: ./server
     container_name: server
     restart: always
     ports:
-      - "3005:3005"
+      - "3002:3002"
   app-nginx:
     build: ./nginx
     container_name: nginx
     restart: always
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /var/www:/var/www:ro
-      - /etc/deployment/nginx:/etc/nginx/conf.d:ro
+    # volumes:
+    #   - /etc/letsencrypt:/etc/letsencrypt:ro
+    #   - /var/www:/var/www:ro
+    #   - /etc/deployment/nginx:/etc/nginx/conf.d:ro
     ports:
       - "80:80"
       - "443:443"
     depends_on:
       - app-client
       - app-server
-  app-certbot:
-    image: certbot/certbot:nightly
-    container_name: certbot
-    restart: always
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/www/certbot:/var/www
-    entrypoint: "/bin/sh -c 'while :; do certbot renew; sleep 12h; done'"
+  # app-certbot:
+  #   image: certbot/certbot:nightly
+  #   container_name: certbot
+  #   restart: always
+  #   volumes:
+  #     - /etc/letsencrypt:/etc/letsencrypt
+  #     - /var/www/certbot:/var/www
+  #   entrypoint: "/bin/sh -c 'while :; do certbot renew; sleep 12h; done'"
