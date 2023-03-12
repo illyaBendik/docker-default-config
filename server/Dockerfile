@@ -21,7 +21,7 @@ RUN yarn install \
   --non-interactive \
   --production=true
 
-RUN yarn db:init
+# RUN yarn db:init
 
 EXPOSE 3002
 
