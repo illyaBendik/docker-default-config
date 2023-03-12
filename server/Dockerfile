@@ -8,7 +8,7 @@ COPY ./app/package.json ./
 
 ENV NODE_ENV=production
 ENV PORT=3002
-ENV MONGO_URI=mongodb+srv://Illia:<password>@bestbetontaroi.utiilgr.mongodb.net/?retryWrites=true&w=majority
+ENV MONGO_URI=mongodb+srv://illia:dGZ1ys6HFCoehVdZ@cluster0.vw42odg.mongodb.net/?retryWrites=true&w=majority
 ENV FILE_UPLOAD_PATH = ./public/uploads
 ENV MAX_FILE_UPLOAD = 2000000
 ENV JWT_SECRET="df5407da39ea6bbfb12c726f9929b3ecbf3b12f1695126ae77931ea15e99ee8c1d56da865b6a06b2d5341d191fceac787edab753601e08e0ceac3fcba090e099"
