@@ -5,6 +5,7 @@ RUN mkdir -p /var/www/server/node_modules && chown -R node:node /var/www/server
 WORKDIR /var/www/server
 
 COPY ./app/package.json ./
+COPY ./app/seeder ./
 
 ENV NODE_ENV=production
 ENV PORT=3002
