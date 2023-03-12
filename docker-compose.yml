@@ -6,13 +6,13 @@ services:
     container_name: app-client
     restart: always
     ports:
-      - "4000:4000"
+      - "3000:3000"
   app-server:
     build: ./server
     container_name: app-server
     restart: always
     ports:
-      - "4002:4002"
+      - "3002:3002"
   app-nginx:
     build: ./nginx
     container_name: app-nginx
