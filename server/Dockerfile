@@ -21,6 +21,8 @@ RUN yarn install \
   --non-interactive \
   --production=true
 
+RUN yarn db:init
+
 EXPOSE 3002
 
 COPY --chown=node:node ./app .
