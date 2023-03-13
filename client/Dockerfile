@@ -1,9 +1,5 @@
 FROM node:16.16.0 as DEPENDENCIES
 
-RUN mkdir -p /var/www/client/node_modules
-
-RUN chown -R node:node /var/www/client
-
 WORKDIR /var/www/client
 
 ADD ./app/package.json ./
